@@ -38,7 +38,7 @@ function Compose() {
 
   const handleNext = () => {
     const query = JSON.stringify(strength);
-    const url = `/cashier?strength=${query}`;
+    const url = `/cashier?t=${query}`;
     router.push(url);
   };
   return (
