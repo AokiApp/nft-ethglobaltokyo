@@ -2,8 +2,6 @@
 // This file is owned by you, feel free to edit as you see fit.
 import * as React from "react";
 import * as ph from "@plasmicapp/react-web/lib/host";
-import GlobalContextsProvider from "../components/plasmic/aokiapp_nft/PlasmicGlobalContextsProvider";
-import { ScreenVariantProvider } from "../components/plasmic/aokiapp_nft/PlasmicGlobalVariant__Screen";
 import { PlasmicCompose } from "../components/plasmic/aokiapp_nft/PlasmicCompose";
 import { useRouter } from "next/router";
 
@@ -37,30 +35,28 @@ function Compose() {
       );
     });
   return (
-    <GlobalContextsProvider>
-      <ph.PageParamsProvider
-        params={useRouter()?.query}
-        query={useRouter()?.query}
-      >
-        <PlasmicCompose
-          slider={sliderContent}
-          pad={{
-            onMouseMove: (e: React.PointerEvent<HTMLDivElement>) => {
-              const x = e.nativeEvent.offsetX;
-              const y = e.nativeEvent.offsetY;
-              const w = e.target.clientWidth;
-              const h = e.target.clientHeight;
-              const i = Math.floor((x / w) * 127);
-              const j = Math.floor((y / h) * 127);
-              const newStrength = [...strength];
-              newStrength[0] = i;
-              newStrength[1] = j;
-              setStrength(newStrength);
-            },
-          }}
-        />
-      </ph.PageParamsProvider>
-    </GlobalContextsProvider>
+    <ph.PageParamsProvider
+      params={useRouter()?.query}
+      query={useRouter()?.query}
+    >
+      <PlasmicCompose
+        slider={sliderContent}
+        pad={{
+          onMouseMove: (e: any) => {
+            const x = e.nativeEvent.offsetX;
+            const y = e.nativeEvent.offsetY;
+            const w = e.target.clientWidth;
+            const h = e.target.clientHeight;
+            const i = Math.floor((x / w) * 127);
+            const j = Math.floor((y / h) * 127);
+            const newStrength = [...strength];
+            newStrength[0] = i;
+            newStrength[1] = j;
+            setStrength(newStrength);
+          },
+        }}
+      />
+    </ph.PageParamsProvider>
   );
 }
 
