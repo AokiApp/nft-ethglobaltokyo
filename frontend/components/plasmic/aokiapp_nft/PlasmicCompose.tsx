@@ -81,6 +81,7 @@ export type PlasmicCompose__OverridesType = {
   tabsContainer?: p.Flex<typeof TabsContainer>;
   tabUnderline?: p.Flex<typeof TabUnderline>;
   pad?: p.Flex<"div">;
+  next?: p.Flex<typeof Button2>;
 };
 
 export interface DefaultComposeProps {}
@@ -371,7 +372,9 @@ function PlasmicCompose__RenderFunc(props: {
               </div>
             </div>
             <Button2
-              className={classNames("__wab_instance", sty.button__gNMvG)}
+              data-plasmic-name={"next"}
+              data-plasmic-override={overrides.next}
+              className={classNames("__wab_instance", sty.next)}
               color={"blue" as const}
               endIcon={
                 <svg
@@ -474,7 +477,8 @@ const PlasmicDescendants = {
     "faceimg",
     "tabsContainer",
     "tabUnderline",
-    "pad"
+    "pad",
+    "next"
   ],
   layout: [
     "layout",
@@ -483,14 +487,16 @@ const PlasmicDescendants = {
     "faceimg",
     "tabsContainer",
     "tabUnderline",
-    "pad"
+    "pad",
+    "next"
   ],
   logo: ["logo"],
   columns: ["columns", "faceimg", "tabsContainer", "tabUnderline", "pad"],
   faceimg: ["faceimg"],
   tabsContainer: ["tabsContainer", "tabUnderline", "pad"],
   tabUnderline: ["tabUnderline"],
-  pad: ["pad"]
+  pad: ["pad"],
+  next: ["next"]
 } as const;
 type NodeNameType = keyof typeof PlasmicDescendants;
 type DescendantsType<T extends NodeNameType> =
@@ -504,6 +510,7 @@ type NodeDefaultElementType = {
   tabsContainer: typeof TabsContainer;
   tabUnderline: typeof TabUnderline;
   pad: "div";
+  next: typeof Button2;
 };
 
 type ReservedPropsType = "variants" | "args" | "overrides";
@@ -573,6 +580,7 @@ export const PlasmicCompose = Object.assign(
     tabsContainer: makeNodeComponent("tabsContainer"),
     tabUnderline: makeNodeComponent("tabUnderline"),
     pad: makeNodeComponent("pad"),
+    next: makeNodeComponent("next"),
 
     // Metadata about props expected for PlasmicCompose
     internalVariantProps: PlasmicCompose__VariantProps,

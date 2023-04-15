@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 const strengthLength = 16;
 
 function Compose() {
+  const router = useRouter();
   const [strength, setStrength] = React.useState(
     Array(strengthLength)
       .fill(0)
@@ -34,11 +35,14 @@ function Compose() {
         </div>
       );
     });
+
+  const handleNext = () => {
+    const query = JSON.stringify(strength);
+    const url = `/cashier?strength=${query}`;
+    router.push(url);
+  };
   return (
-    <ph.PageParamsProvider
-      params={useRouter()?.query}
-      query={useRouter()?.query}
-    >
+    <ph.PageParamsProvider params={router?.query} query={router?.query}>
       <PlasmicCompose
         slider={sliderContent}
         pad={{
@@ -54,6 +58,9 @@ function Compose() {
             newStrength[1] = j;
             setStrength(newStrength);
           },
+        }}
+        next={{
+          onClick: handleNext,
         }}
       />
     </ph.PageParamsProvider>

@@ -255,7 +255,7 @@
   min-width: 0;
   padding: 8px;
 }
-.button__gNMvG:global(.__wab_instance) {
+.next:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
   width: 397px;
