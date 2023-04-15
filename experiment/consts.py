@@ -1,5 +1,5 @@
 #constant file
-TOKEN_NUM = 4
+TOKEN_NUM = 64
 
 TOKEN_RANGE_MAX = 127
 TOKEN_RANGE_MIN = 0
