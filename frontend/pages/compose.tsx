@@ -7,30 +7,58 @@ import { ScreenVariantProvider } from "../components/plasmic/aokiapp_nft/Plasmic
 import { PlasmicCompose } from "../components/plasmic/aokiapp_nft/PlasmicCompose";
 import { useRouter } from "next/router";
 
+const strengthLength = 16;
+
 function Compose() {
-  // Use PlasmicCompose to render this component as it was
-  // designed in Plasmic, by activating the appropriate variants,
-  // attaching the appropriate event handlers, etc.  You
-  // can also install whatever React hooks you need here to manage state or
-  // fetch data.
-  //
-  // Props you can pass into PlasmicCompose are:
-  // 1. Variants you want to activate,
-  // 2. Contents for slots you want to fill,
-  // 3. Overrides for any named node in the component to attach behavior and data,
-  // 4. Props to set on the root node.
-  //
-  // By default, PlasmicCompose is wrapped by your project's global
-  // variant context providers. These wrappers may be moved to
-  // Next.js Custom App component
-  // (https://nextjs.org/docs/advanced-features/custom-app).
+  const [strength, setStrength] = React.useState(
+    Array(strengthLength)
+      .fill(0)
+      .map(() => 0)
+  );
+
+  const sliderContent = Array(strengthLength)
+    .fill(0)
+    .map((_, i) => {
+      const nm = `slider${i}`;
+      return (
+        <div key={nm}>
+          <input
+            type="range"
+            min="0"
+            max="127"
+            value={strength[i]}
+            onChange={(e) => {
+              const newStrength = [...strength];
+              newStrength[i] = parseInt(e.target.value);
+              setStrength(newStrength);
+            }}
+          />
+        </div>
+      );
+    });
   return (
     <GlobalContextsProvider>
       <ph.PageParamsProvider
         params={useRouter()?.query}
         query={useRouter()?.query}
       >
-        <PlasmicCompose />
+        <PlasmicCompose
+          slider={sliderContent}
+          pad={{
+            onMouseMove: (e: React.PointerEvent<HTMLDivElement>) => {
+              const x = e.nativeEvent.offsetX;
+              const y = e.nativeEvent.offsetY;
+              const w = e.target.clientWidth;
+              const h = e.target.clientHeight;
+              const i = Math.floor((x / w) * 127);
+              const j = Math.floor((y / h) * 127);
+              const newStrength = [...strength];
+              newStrength[0] = i;
+              newStrength[1] = j;
+              setStrength(newStrength);
+            },
+          }}
+        />
       </ph.PageParamsProvider>
     </GlobalContextsProvider>
   );
