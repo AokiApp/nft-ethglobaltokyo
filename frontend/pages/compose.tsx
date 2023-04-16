@@ -62,6 +62,11 @@ function Compose() {
         next={{
           onClick: handleNext,
         }}
+        faceimg={{
+          props: {
+            src: "https://aokiapp-nft.azurewebsites.net/generate_image?token_values="+strength.join(",")
+          }
+        }}
       />
     </ph.PageParamsProvider>
   );
