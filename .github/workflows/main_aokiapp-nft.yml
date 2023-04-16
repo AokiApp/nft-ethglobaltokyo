@@ -22,7 +22,7 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://ghcr.io//
+        registry: https://ghcr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_f750141bb22940e58932683b406a24f5 }}
         password: ${{ secrets.AzureAppService_ContainerPassword_49139252fee14f5b8ec55e03df4cd93e }}
 
@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: ghcr.io//${{ secrets.AzureAppService_ContainerUsername_f750141bb22940e58932683b406a24f5 }}/aokiapp/nft-ethglobaltokyo/aokiapp/nft-ethglobaltokyo/backend:${{ github.sha }}
+        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_f750141bb22940e58932683b406a24f5 }}/aokiapp/nft-ethglobaltokyo/aokiapp/nft-ethglobaltokyo/backend:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'aokiapp-nft'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_ce46dd408c694cb69e1b1ea45ffd9c27 }}
-        images: 'ghcr.io//${{ secrets.AzureAppService_ContainerUsername_f750141bb22940e58932683b406a24f5 }}/aokiapp/nft-ethglobaltokyo/aokiapp/nft-ethglobaltokyo/backend:${{ github.sha }}'
+        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_f750141bb22940e58932683b406a24f5 }}/aokiapp/nft-ethglobaltokyo/aokiapp/nft-ethglobaltokyo/backend:${{ github.sha }}'
