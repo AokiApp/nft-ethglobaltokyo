@@ -31,7 +31,8 @@ jobs:
       with:
         push: true
         tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_f750141bb22940e58932683b406a24f5 }}/aokiapp/nft-ethglobaltokyo/aokiapp/nft-ethglobaltokyo/backend:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./backend/Dockerfile
+        context: backend
 
   deploy:
     runs-on: ubuntu-latest
