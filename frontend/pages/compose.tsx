@@ -64,8 +64,10 @@ function Compose() {
         }}
         faceimg={{
           props: {
-            src: "https://aokiapp-nft.azurewebsites.net/generate_image?token_values="+strength.join(",")
-          }
+            src:
+              "http://localhost:8080/generate_image?token_values=" +
+              strength.join(","),
+          },
         }}
       />
     </ph.PageParamsProvider>

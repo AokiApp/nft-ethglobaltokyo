@@ -78,6 +78,7 @@ export type PlasmicCompose__OverridesType = {
   logo?: p.Flex<typeof Logo>;
   columns?: p.Flex<"div">;
   faceimg?: p.Flex<typeof p.PlasmicImg>;
+  link?: p.Flex<"a"> & Partial<LinkProps>;
   tabsContainer?: p.Flex<typeof TabsContainer>;
   tabUnderline?: p.Flex<typeof TabUnderline>;
   pad?: p.Flex<"div">;
@@ -215,6 +216,39 @@ function PlasmicCompose__RenderFunc(props: {
                     aspectRatio: undefined
                   }}
                 />
+
+                <div
+                  className={classNames(
+                    projectcss.all,
+                    projectcss.__wab_text,
+                    sty.text__lnb3R
+                  )}
+                >
+                  <React.Fragment>
+                    <React.Fragment>{"No image? \nPlease use "}</React.Fragment>
+                    {
+                      <p.PlasmicLink
+                        data-plasmic-name={"link"}
+                        data-plasmic-override={overrides.link}
+                        className={classNames(
+                          projectcss.all,
+                          projectcss.a,
+                          projectcss.__wab_text,
+                          projectcss.plasmic_default__inline,
+                          sty.link
+                        )}
+                        component={Link}
+                        href={
+                          "https://aokiapp-nft-internal-demo-z1aioy.streamlit.app/" as const
+                        }
+                        platform={"nextjs"}
+                      >
+                        {"alternative implementation"}
+                      </p.PlasmicLink>
+                    }
+                    <React.Fragment>{""}</React.Fragment>
+                  </React.Fragment>
+                </div>
               </div>
               <div className={classNames(projectcss.all, sty.column__etJpp)}>
                 <TabsContainer
@@ -475,6 +509,7 @@ const PlasmicDescendants = {
     "logo",
     "columns",
     "faceimg",
+    "link",
     "tabsContainer",
     "tabUnderline",
     "pad",
@@ -485,14 +520,23 @@ const PlasmicDescendants = {
     "logo",
     "columns",
     "faceimg",
+    "link",
     "tabsContainer",
     "tabUnderline",
     "pad",
     "next"
   ],
   logo: ["logo"],
-  columns: ["columns", "faceimg", "tabsContainer", "tabUnderline", "pad"],
+  columns: [
+    "columns",
+    "faceimg",
+    "link",
+    "tabsContainer",
+    "tabUnderline",
+    "pad"
+  ],
   faceimg: ["faceimg"],
+  link: ["link"],
   tabsContainer: ["tabsContainer", "tabUnderline", "pad"],
   tabUnderline: ["tabUnderline"],
   pad: ["pad"],
@@ -507,6 +551,7 @@ type NodeDefaultElementType = {
   logo: typeof Logo;
   columns: "div";
   faceimg: typeof p.PlasmicImg;
+  link: "a";
   tabsContainer: typeof TabsContainer;
   tabUnderline: typeof TabUnderline;
   pad: "div";
@@ -577,6 +622,7 @@ export const PlasmicCompose = Object.assign(
     logo: makeNodeComponent("logo"),
     columns: makeNodeComponent("columns"),
     faceimg: makeNodeComponent("faceimg"),
+    link: makeNodeComponent("link"),
     tabsContainer: makeNodeComponent("tabsContainer"),
     tabUnderline: makeNodeComponent("tabUnderline"),
     pad: makeNodeComponent("pad"),
